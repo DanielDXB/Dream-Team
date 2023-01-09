@@ -1,13 +1,11 @@
-const express = require('express');
+const express = require("express");
+const connection = require("./database/dbconnection");
+const informationRoute = require("./model/information");
 
 const app = express();
 
-const port = 3000;
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use("/information", informationRoute);
 
-app.get("/", (req, res) => {
-    res.send("Code Base!");
-});
-
-app.listen(port, () => {
-    console.log("App server started on port: ", port);
-});
+module.exports = app;
